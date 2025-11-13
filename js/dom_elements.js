@@ -12,6 +12,12 @@ function setup() {
   input_txt = createInput("shake 🤪 me");
   slider_value = createSlider(1, 100, 40);
   slider_value.position(20, 60);
+  // Check for iOS 13+ and create a button if needed
+  if (typeof(DeviceMotionEvent) !== "undefined" && typeof(DeviceMotionEvent.requestPermission) === "function") {
+    let button = createButton('click to allow access to sensors');
+    button.style('font-size', '28px');
+    button.mousePressed(DeviceMotionEvent.requestPermission);
+  }
 }
 
 function draw() {
